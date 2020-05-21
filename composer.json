@@ -2,11 +2,24 @@
     "name": "atlas-web/illinois-framework-project",
     "type": "project",
     "description": "Project template for Drupal 8 sites built with the Illinois Framework",
+    "homepage": "https://github.com/ATLAS-Illinois/Illinois-Framework-Project",
+    "support": {
+        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
+        "chat": "https://www.drupal.org/node/314178"
+    },
     "require": {
         "atlas-web/illinois-framework": "dev-master",
+        "composer/installers": "^1.2",
         "cweagans/composer-patches": "^1.6.0",
-        "drupal/core-composer-scaffold": "*",
+        "drupal/console": "^1.9",
+        "drupal/core-composer-scaffold": "^8.8",
+        "drupal/core-project-message": "^8.8",
+        "drupal/core-recommended": "^8.8",
+        "drush/drush": "^10.2",
         "oomphinc/composer-installers-extender": "^1.1"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
     },
     "extra": {
         "composer-exit-on-patch-failure": true,
@@ -44,6 +57,27 @@
         ],
         "patchLevel": {
             "drupal/core": "-p2"
+        },
+        "drupal-core-project-message": {
+            "include-keys": [
+                "homepage",
+                "support"
+            ],
+            "post-create-project-cmd-message": [
+                "<bg=blue;fg=white>                                                         </>",
+                "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
+                "<bg=blue;fg=white>  from the atlas-web/illinois-framework-project template!</>",
+                "<bg=blue;fg=white>                                                         </>",
+                "",
+                "<bg=yellow;fg=black>Next steps</>:",
+                "  * Install the site: https://www.drupal.org/docs/8/install",
+                "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
+                "  * Get support: https://www.drupal.org/support",
+                "  * Get involved with the Drupal community:",
+                "      https://www.drupal.org/getting-involved",
+                "  * Remove the plugin that prints this message:",
+                "      composer remove drupal/core-project-message"
+            ]
         }
     },
     "repositories": {
