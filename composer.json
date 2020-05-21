@@ -3,6 +3,7 @@
     "type": "project",
     "description": "Project template for Drupal 8 sites built with the Illinois Framework",
     "require": {
+        "atlas-web/illinois-framework": "dev-master",
         "cweagans/composer-patches": "^1.6.0",
         "drupal/core-composer-scaffold": "*",
         "oomphinc/composer-installers-extender": "^1.1"
@@ -49,6 +50,10 @@
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
+        },
+        "atlas-web": {
+            "type": "composer",
+            "url": "https://fwpackages.web.illinois.edu"
         },
         "assets": {
             "type": "composer",
