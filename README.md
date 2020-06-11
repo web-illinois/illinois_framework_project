@@ -29,7 +29,7 @@ Be sure to `chmod 770` the scripts so that you can run them.
 
 After running `site-build.sh`, you should be able to browse to your site and start the Drupal installation process. I recommend using the SQLite DB option for simplicity and speed.
 
-Once your site is installed, you should be able to modify the template files via the Terminal or SSH by browsing to `cd ~/my-fw-project/docroot/themes/contrib/illinois-framework-theme/`. To commit your changes to the Illinois-Framework-Theme repository, you'll want to follow the steps at https://help.github.com/en/github/authenticating-to-github/authorizing-an-ssh-key-for-use-with-saml-single-sign-on.
+Once your site is installed, you should be able to modify the template files via the Terminal or SSH by browsing to `cd ~/my-fw-project/docroot/themes/contrib/illinois-framework-theme/`. To commit your changes to the [Illinois-Framework-Theme](https://github.com/ATLAS-Illinois/Illinois-Framework-Theme) repository, you'll want to follow the steps at https://help.github.com/en/github/authenticating-to-github/authorizing-an-ssh-key-for-use-with-saml-single-sign-on.
 
 To rebuild your cPanel site from scratch, you can run the below command from your home directory:
 
