@@ -13,6 +13,9 @@ COMPOSER_MEMORY_LIMIT=-1 composer create-project --repository https://fwpackages
 ln -s ~/my-fw-project/vendor ~/vendor
 ln -s ~/my-fw-project/docroot/.* ~/public_html/
 ln -s ~/my-fw-project/docroot/* ~/public_html/
+
+# Install Drupal
+~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
 ```
 
 _site-remove.sh_
