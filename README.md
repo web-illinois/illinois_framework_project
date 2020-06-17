@@ -9,7 +9,9 @@
 _site-build.sh_
 ```bash
 #!/bin/bash
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --repository https://fwpackages.web.illinois.edu/ atlas-web/illinois-framework-project:dev-master my-fw-project
+DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
+
+COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository https://fwpackages.web.illinois.edu/ atlas-web/illinois-framework-project:dev-master my-fw-project
 ln -s ~/my-fw-project/vendor ~/vendor
 ln -s ~/my-fw-project/docroot/.* ~/public_html/
 ln -s ~/my-fw-project/docroot/* ~/public_html/
