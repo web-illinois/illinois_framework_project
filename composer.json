@@ -1,5 +1,5 @@
 {
-    "name": "atlas-web/illinois-framework-project",
+    "name": "web-illinois/illinois-framework-project",
     "type": "project",
     "description": "Project template for Drupal 8 sites built with the Illinois Framework",
     "homepage": "https://github.com/ATLAS-Illinois/Illinois-Framework-Project",
@@ -8,7 +8,7 @@
         "chat": "https://www.drupal.org/node/314178"
     },
     "require": {
-        "atlas-web/illinois-framework": "dev-master",
+        "web-illinois/illinois-framework-profile": "dev-master",
         "cweagans/composer-patches": "^1.6.0",
         "drupal/core-composer-scaffold": "*",
         "drupal/core-project-message": "^8.8",
@@ -87,7 +87,7 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "atlas-web": {
+        "web-illinois": {
             "type": "composer",
             "url": "https://fwpackages.web.illinois.edu"
         },
