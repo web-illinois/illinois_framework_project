@@ -1,3 +1,7 @@
+.idea/
+.docker-sync/
+/tests
+
 # Ignore binaries.
 /bin
 
@@ -8,6 +12,33 @@
 /docroot/profiles/contrib
 /docroot/themes/contrib
 /docroot/sites/default/files
+/privatefiles
+
+# Ignore Drupal scaffolding files
+# See https://www.computerminds.co.uk/articles/customise-scaffold-files-right-way for customizing the scaffold files
+/.editorconfig
+/.gitattributes
+docroot/.csslintrc
+docroot/.eslintignore
+docroot/.eslintrc.json
+docroot/.ht.router.php
+docroot/.htaccess
+docroot/example.gitignore
+docroot/index.php
+docroot/INSTALL.txt
+docroot/README.txt
+docroot/robots.txt
+docroot/update.php
+docroot/web.config
+docroot/sites/README.txt
+docroot/sites/development.services.yml
+docroot/sites/example.settings.local.php
+docroot/sites/example.sites.php
+docroot/sites/default/default.services.yml
+docroot/sites/default/default.settings.php
+docroot/modules/README.txt
+docroot/profiles/README.txt
+docroot/themes/README.txt
 
 # Ignore Composer-managed dependencies.
 vendor/
