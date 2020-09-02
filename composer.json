@@ -15,6 +15,11 @@
         "drupal/core-recommended": "^8.9.0",
         "oomphinc/composer-installers-extender": "^1.1"
     },
+    "require-dev": {
+        "drupal/console": "~1.0",
+        "drupal/devel": "^4.0",
+        "kint-php/kint": "^3.3"
+    },
     "conflict": {
         "drupal/drupal": "*"
     },
