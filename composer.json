@@ -2,7 +2,7 @@
     "name": "web-illinois/illinois-framework-project",
     "type": "project",
     "description": "Project template for Drupal 8 sites built with the Illinois Framework",
-    "homepage": "https://github.com/ATLAS-Illinois/Illinois-Framework-Project",
+    "homepage": "https://github.com/web-illinois/illinois-framework-project",
     "support": {
         "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
         "chat": "https://www.drupal.org/node/314178"
@@ -68,7 +68,7 @@
             "post-create-project-cmd-message": [
                 "<bg=blue;fg=white>                                                         </>",
                 "<bg=blue;fg=white>  Congratulations, you’ve installed the Drupal codebase  </>",
-                "<bg=blue;fg=white>  from the atlas-web/illinois-framework-project template!</>",
+                "<bg=blue;fg=white>  from the web-illinois/illinois-framework-project template!</>",
                 "<bg=blue;fg=white>                                                         </>",
                 "",
                 "<bg=yellow;fg=black>Next steps</>:",
