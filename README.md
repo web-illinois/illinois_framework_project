@@ -18,7 +18,7 @@ $ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository htt
 
 ### Creating a development site in web.illinois.edu
 
-* Start by creating a new web hosting account on http://web.illinois.edu/, or using an alredy created account that is empty
+* Start by creating a new web hosting account on http://web.illinois.edu/, or using an already created account that is empty
 * On the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
 * Create the two following scripts in your home (~) folder:
 
@@ -48,7 +48,7 @@ rm -R -f ~/my-fw-project
 
 Be sure to `chmod 770` the scripts so that you can run them.
 
-After running `site-build.sh`, you should have a new Illinois Framework site available at your cPanel address. Be sure to note the admin account password that's generated at the end of the script. 
+After running `site-build.sh`, you should have a new Illinois Framework site available at your cPanel address. Be sure to note the admin account password that's generated at the end of the script.
 
 Once your site is installed, you should be able to modify the template files via the Terminal or SSH by browsing to `cd ~/my-fw-project/docroot/themes/contrib/illinois_framework_theme/`. To commit your changes to the [Illinois Framework Theme](https://github.com/web-illinois/illinois_framework_theme) repository, you'll want to follow the steps at https://help.github.com/en/github/authenticating-to-github/authorizing-an-ssh-key-for-use-with-saml-single-sign-on.
 
@@ -79,7 +79,7 @@ Updating the Framework and Drupal is done through Composer. Below are some comma
 
 [Drush](https://www.drush.org/) is installed and available for your Framework site at `~/MY_PROJECT/vendor/drush/drush/drush`.
 
-[Drupal Console](https://drupalconsole.com/docs/en/about/what-is-the-drupal-console) is installed and available for your Framework site at `~/MY_PROJECT/vendor/bin/drupal`. 
+[Drupal Console](https://drupalconsole.com/docs/en/about/what-is-the-drupal-console) is installed and available for your Framework site at `~/MY_PROJECT/vendor/bin/drupal`.
 
 You can add the below alias commands to your `~/.bashrc` to keep from having to type the whole path each time:
 
