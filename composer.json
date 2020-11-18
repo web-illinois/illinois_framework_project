@@ -1,11 +1,11 @@
 {
     "name": "web-illinois/illinois_framework_project",
     "type": "project",
-    "description": "Project template for Drupal 8 sites built with the Illinois Framework",
+    "description": "Project template for Drupal 8 sites built with the Illinois Framework distribution",
     "homepage": "https://github.com/web-illinois/illinois_framework_project",
     "support": {
-        "docs": "https://www.drupal.org/docs/user_guide/en/index.html",
-        "chat": "https://www.drupal.org/node/314178"
+        "docs": "https://github.com/web-illinois/illinois_framework_project",
+        "more info": "https://webguidelines.web.illinois.edu/subcommittees/drupal/"
     },
     "require": {
         "web-illinois/illinois_framework_profile": "dev-master",
@@ -15,7 +15,6 @@
         "oomphinc/composer-installers-extender": "^2.0"
     },
     "require-dev": {
-        "drupal/console": "~1.0",
         "drupal/devel": "^4.0",
         "kint-php/kint": "^3.3"
     },
@@ -86,9 +85,17 @@
             "type": "composer",
             "url": "https://packages.drupal.org/8"
         },
-        "web-illinois": {
+        "web-illinois-profile": {
             "type": "vcs",
             "url": "https://github.com/web-illinois/illinois_framework_profile"
+        },
+        "web-illinois-core": {
+            "type": "vcs",
+            "url": "https://github.com/web-illinois/illinois_framework_core.git"
+        },
+        "web-illinois-theme": {
+            "type": "vcs",
+            "url": "https://github.com/web-illinois/illinois_framework_theme.git"
         },
         "assets": {
             "type": "composer",
