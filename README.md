@@ -22,7 +22,7 @@ $ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\
 * On the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
 * Create the two following scripts in your home (~) folder:
 
-_site-build.sh_
+_site-build.sh_ using SQLite as your database
 ```bash
 #!/bin/bash
 DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
@@ -34,6 +34,24 @@ ln -s ~/my-fw-project/docroot/* ~/public_html/
 
 # Install Drupal
 ~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
+```
+_site-build.sh_ using MySQL as your database
+> Requires you to add a new database and database user in your cPanel instance first. See https://answers.illinois.edu/illinois/84998
+```bash
+#!/bin/bash
+
+COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:dev-master my-fw-project
+ln -s ~/my-fw-project/vendor ~/vendor
+ln -s ~/my-fw-project/docroot/.* ~/public_html/
+ln -s ~/my-fw-project/docroot/* ~/public_html/
+
+read -p "Enter your MySQL database name ex: [CPANELUSER_XXX]:" DBNAME;
+read -p "Enter your database username ex: [CPANELUSER_XXX]:" DBUSER;
+read -p "Enter your database password:" DBPASSWORD;
+
+# Install Drupal
+~/vendor/drush/drush/drush site:install --yes --site-name=IllinoisFramework --db-url="mysql://$DBUSER:$DBPASSWORD@localhost/$DBNAME"
+
 ```
 
 _site-remove.sh_
