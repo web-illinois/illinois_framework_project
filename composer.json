@@ -8,7 +8,7 @@
         "more info": "https://webguidelines.web.illinois.edu/subcommittees/drupal/"
     },
     "require": {
-        "web-illinois/illinois_framework_profile": "dev-master",
+        "web-illinois/illinois_framework_profile": "dev-dev",
         "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "*",
         "drupal/core-project-message": "^8.8",
