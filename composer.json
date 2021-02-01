@@ -102,6 +102,6 @@
             "url": "https://asset-packagist.org"
         }
     },
-    "minimum-stability": "RC",
+    "minimum-stability": "dev",
     "prefer-stable": true
 }
