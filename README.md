@@ -7,13 +7,13 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 If you're comfortable with using Composer and have a hosting environment already, you can get started with the Illinois Framework with the command:
 
 ```
-$ composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:dev-master MY_PROJECT
+$ composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev MY_PROJECT
 ```
 
 It's possible Composer will run out of memory if PHP is configured to limit the amount of PHP memory available. To get around that, try prepending `COMPOSER_MEMORY_LIMIT=-1` to the above command:
 
 ```
-$ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:dev-master MY_PROJECT
+$ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev MY_PROJECT
 ```
 
 ### Creating a development site in web.illinois.edu
@@ -27,7 +27,7 @@ _site-build.sh_ using SQLite as your database
 #!/bin/bash
 DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
 
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:dev-master my-fw-project
+COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
 ln -s ~/my-fw-project/vendor ~/vendor
 ln -s ~/my-fw-project/docroot/.* ~/public_html/
 ln -s ~/my-fw-project/docroot/* ~/public_html/
@@ -40,7 +40,7 @@ _site-build.sh_ using MySQL as your database
 ```bash
 #!/bin/bash
 
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:dev-master my-fw-project
+COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
 ln -s ~/my-fw-project/vendor ~/vendor
 ln -s ~/my-fw-project/docroot/.* ~/public_html/
 ln -s ~/my-fw-project/docroot/* ~/public_html/
