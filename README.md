@@ -36,7 +36,7 @@ ln -s ~/my-fw-project/docroot/* ~/public_html/
 ~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
 ```
 _site-build.sh_ using MySQL as your database
-> Requires you to add a new database and database user in your cPanel instance first. See https://answers.illinois.edu/illinois/84998
+> Optionally creates a new database and database user for you in your cPanel instance. If you have precreated your database, answer n to "Create Database?" 
 ```bash
 #!/bin/bash
 
@@ -44,14 +44,26 @@ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"u
 ln -s ~/my-fw-project/vendor ~/vendor
 ln -s ~/my-fw-project/docroot/.* ~/public_html/
 ln -s ~/my-fw-project/docroot/* ~/public_html/
+CREATE="Y"
 
 read -p "Enter your MySQL database name ex: [CPANELUSER_XXX]:" DBNAME;
 read -p "Enter your database username ex: [CPANELUSER_XXX]:" DBUSER;
 read -p "Enter your database password:" DBPASSWORD;
+read -p "Create Database? [Y/n]" CREATE;
 
+if [ $CREATE != n ]; then
+#create database
+uapi Mysql create_database name=$DBNAME
+
+#create db user
+uapi  Mysql create_user name=$DBUSER password=$DBPASSWORD
+
+#add db user privs
+uapi Mysql set_privileges_on_database user=$DBUSER database=$DBNAME privileges=SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER,CREATE%20TEMPORARY%20TABLES
+
+fi
 # Install Drupal
 ~/vendor/drush/drush/drush site:install --yes --site-name=IllinoisFramework --db-url="mysql://$DBUSER:$DBPASSWORD@localhost/$DBNAME"
-
 ```
 
 _site-remove.sh_
