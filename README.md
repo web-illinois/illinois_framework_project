@@ -22,19 +22,6 @@ $ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\
 * On the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
 * Create the two following scripts in your home (~) folder:
 
-_site-build.sh_ using SQLite as your database
-```bash
-#!/bin/bash
-DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
-
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
-ln -s ~/my-fw-project/vendor ~/vendor
-ln -s ~/my-fw-project/docroot/.* ~/public_html/
-ln -s ~/my-fw-project/docroot/* ~/public_html/
-
-# Install Drupal
-~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
-```
 _site-build.sh_ using MySQL as your database
 > Optionally creates a new database and database user for you in your cPanel instance. If you have precreated your database, answer n to "Create Database?" 
 ```bash
@@ -66,6 +53,20 @@ fi
 ~/vendor/drush/drush/drush site:install --yes --site-name=IllinoisFramework --db-url="mysql://$DBUSER:$DBPASSWORD@localhost/$DBNAME"
 ```
 
+_site-build.sh_ using SQLite as your database
+```bash
+#!/bin/bash
+DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
+
+COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
+ln -s ~/my-fw-project/vendor ~/vendor
+ln -s ~/my-fw-project/docroot/.* ~/public_html/
+ln -s ~/my-fw-project/docroot/* ~/public_html/
+
+# Install Drupal
+~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
+```
+
 _site-remove.sh_
 ```bash
 #!/bin/bash
@@ -87,11 +88,6 @@ To rebuild your cPanel site from scratch, you can run the below command from you
 ```bash
 ./site-remove.sh; ./site-build.sh
 ```
-
-### Local development with Docker
-
-Head on over to our [Illinois Framework Docker Local Development repository](https://github.com/web-illinois/illinois_framework_localdev) for information on setting up a site locally.
-
 
 ## Maintenance
 
