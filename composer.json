@@ -90,7 +90,7 @@
         },
         "web-illinois-profile": {
             "type": "vcs",
-            "url": "https://github.com/web-illinois/illinois_framework_profile"
+            "url": "https://github.com/web-illinois/illinois_framework_profile.git"
         },
         "web-illinois-core": {
             "type": "vcs",
