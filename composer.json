@@ -11,7 +11,7 @@
         "web-illinois/illinois_framework_profile": "^1.0",
         "cweagans/composer-patches": "^1.7",
         "drupal/core-composer-scaffold": "*",
-        "drupal/core-project-message": "^8.8",
+        "drupal/core-project-message": "*",
         "oomphinc/composer-installers-extender": "^2.0"
     },
     "require-dev": {
@@ -106,5 +106,25 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "autoload": {
+        "classmap": [
+            "scripts/composer/ScriptHandler.php"
+        ]
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createSymlinks"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::createSymlinks"
+        ],
+        "create-db": [
+            "DrupalProject\\composer\\ScriptHandler::createMySQLuser",
+            "DrupalProject\\composer\\ScriptHandler::createMySQLdb"
+        ],
+        "install-site": [
+            "DrupalProject\\composer\\ScriptHandler::installSite"
+        ]
+    }
 }
