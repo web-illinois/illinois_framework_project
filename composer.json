@@ -1,11 +1,11 @@
 {
     "name": "web-illinois/illinois_framework_project",
     "type": "project",
-    "description": "Project template for Drupal 8 sites built with the Illinois Framework distribution",
+    "description": "Project template for Drupal sites built with the Illinois Framework distribution",
     "homepage": "https://github.com/web-illinois/illinois_framework_project",
     "support": {
         "docs": "https://github.com/web-illinois/illinois_framework_project",
-        "more info": "https://webguidelines.web.illinois.edu/subcommittees/drupal/"
+        "more info": "https://webtheme.illinois.edu/about/drupal/"
     },
     "require": {
         "web-illinois/illinois_framework_profile": "^1.0",
@@ -75,9 +75,6 @@
                 "<bg=yellow;fg=black>Next steps</>:",
                 "  * Install the site: https://www.drupal.org/docs/8/install",
                 "  * Read the user guide: https://www.drupal.org/docs/user_guide/en/index.html",
-                "  * Get support: https://www.drupal.org/support",
-                "  * Get involved with the Drupal community:",
-                "      https://www.drupal.org/getting-involved",
                 "  * Remove the plugin that prints this message:",
                 "      composer remove drupal/core-project-message"
             ]
