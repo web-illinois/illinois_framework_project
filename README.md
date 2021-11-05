@@ -1,91 +1,40 @@
 # Illinois Framework Project
 
-This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois Framework Drupal distribution](https://github.com/web-illinois/illinois_framework_profile). For more information about the Illinois Framework project, please check out the visit the [Illinois Framework Drupal distribution repository](https://github.com/web-illinois/illinois_framework_profile).
+This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois Framework Drupal distribution](https://github.com/web-illinois/illinois_framework_profile). It is intended to be used on the UIUC cPanel instance at https://web.illinois.edu. For more information about the Illinois Framework project, please check out the visit the [Illinois Framework Drupal distribution repository](https://github.com/web-illinois/illinois_framework_profile).
 
-## Installation
+## Prerequisites
 
-If you're comfortable with using Composer and have a hosting environment already, you can get started with the Illinois Framework with the command:
+* A fresh cPanel account on https://web.illinois.edu
+* Github [personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) that is [enabled for SSO](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)
+  * Save your token somewhere safe. You will need it to run the composer command that installs your site below.
+
+## Creating a cPanel site in web.illinois.edu
+
+* From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
+* Run the below command from your home (~) folder:
 
 ```
-$ composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:^1.0 MY_PROJECT
+composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev illinois_framework
 ```
 
-It's possible Composer will run out of memory if PHP is configured to limit the amount of PHP memory available. To get around that, try prepending `COMPOSER_MEMORY_LIMIT=-1` to the above command:
+* Congrats! You should now have a Illinois Framework Drupal site!
+* _Be sure to take note of the admin password displayed at the end of the script_
 
-```
-$ COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:^1.0 MY_PROJECT
-```
+## Extra information:
 
-### Creating a cPanel site in web.illinois.edu
+* The files for your site are stored in the ~/illinois_framework folder
+* Files uploaded to the site are stored in ~/illinois_framework/docroot/sites/default/files
 
-* Start by creating a new web hosting account on http://web.illinois.edu/, or using an already created account that is empty
-* On the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
-* Create one of the two the `site-build.sh` scripts below in your home (~) folder:
+## Updating your site
 
-Option 1: _site-build.sh_ using MySQL as your database
-> Optionally creates a new database and database user for you in your cPanel instance. If you have precreated your database, answer n to "Create Database?"
-> Substitue your cPanel account name for "CPANELUSER" for the database name and username when prompted
+Security updates are regularly relased for Drupal and its modules, so it's vital to keep your site updated. To update your site, open the terminal for your site, `cd` to the folder `~/illinois_framework`, and run the following commands:
+
 ```bash
-#!/bin/bash
-
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
-ln -s ~/my-fw-project/vendor ~/vendor
-ln -s ~/my-fw-project/docroot/.* ~/public_html/
-ln -s ~/my-fw-project/docroot/* ~/public_html/
-CREATE="Y"
-
-read -p "Enter your MySQL database name ex: [CPANELUSER_XXX]:" DBNAME;
-read -p "Enter your database username ex: [CPANELUSER_XXX]:" DBUSER;
-read -p "Enter your database password:" DBPASSWORD;
-read -p "Create Database? [Y/n]" CREATE;
-
-if [ $CREATE != n ]; then
-#create database
-uapi Mysql create_database name=$DBNAME
-
-#create db user
-uapi  Mysql create_user name=$DBUSER password=$DBPASSWORD
-
-#add db user privs
-uapi Mysql set_privileges_on_database user=$DBUSER database=$DBNAME privileges=SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER,CREATE%20TEMPORARY%20TABLES
-
-fi
-# Install Drupal
-~/vendor/drush/drush/drush site:install --yes --site-name=IllinoisFramework --db-url="mysql://$DBUSER:$DBPASSWORD@localhost/$DBNAME"
+composer update --with-all-dependencies --no-dev -o
+drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 ```
 
-Option 2: _site-build.sh_ using SQLite as your database
-```bash
-#!/bin/bash
-DB_URL=${DB_URL:-sqlite://sites/default/files/.ht.sqlite}
-
-COMPOSER_MEMORY_LIMIT=-1 composer create-project --remove-vcs --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev my-fw-project
-ln -s ~/my-fw-project/vendor ~/vendor
-ln -s ~/my-fw-project/docroot/.* ~/public_html/
-ln -s ~/my-fw-project/docroot/* ~/public_html/
-
-# Install Drupal
-~/vendor/drush/drush/drush site:install illinois_framework --yes --db-url=$DB_URL --site-name=IllinoisFramework
-```
-
-* Optional - create a `site-remove.sh` script that will delete your site. This is useful when developing the framework, but not when developing a site that relies on the framework.
-
-_site-remove.sh_
-```bash
-#!/bin/bash
-rm ~/public_html/*
-rm ~/public_html/.*
-rm ~/vendor
-chmod 775 ~/my-fw-project/docroot/sites/default/
-rm -R -f ~/my-fw-project
-```
-
-Be sure to `chmod 770` the scripts so that you can run them.
-
-* Run `site-build.sh`, and *be sure to take note of the admin password generated at the end of the script*.
-* You should have a new Illinois Framework site available at your cPanel address.
-
-## Setting up Shibboleth authentication within your cPanel web.illinois.edu site
+## Setting up Shibboleth authentication within your Illinois Framework Drupal site
 
 * Open up a cPanel Terminal session or SSH into your site
 * In your project folder `~/my-fw-project`, run the command
@@ -129,23 +78,21 @@ You should now be able to authenticate using the UIUC Shibboleth login system! I
 
 With the above configuration, any valid user with a NetID will be able to log into your site and automatically create an account. That user will not have any additional permissions. To give that user additional permissions, you will need to find them on the People admin page and assign them a role like administrator or editor.
 
-## Maintenance
+## Extending the Illinois Framework
 
-Updating the Framework and Drupal is done through Composer. Below are some commands that you can use to add and update Drupal modules.
+If you would like to extend the Illinois Framework with additional [modules](https://www.drupal.org/project/project_module) or [themes](https://www.drupal.org/project/project_theme), you need to use composer to add them to your site.  
 
 | Task                                            | Composer                                          |
 |-------------------------------------------------|---------------------------------------------------|
 | Installing a contrib project (latest version)   | ```composer require drupal/PROJECT```             |
 | Installing a contrib project (specific version) | ```composer require drupal/PROJECT:1.0.0-beta3``` |
-| Updating all contrib projects and Drupal core   | ```composer update```                             |
 | Updating a single contrib project               | ```composer update drupal/PROJECT```              |
-| Updating Drupal core                            | ```composer update drupal/core```                 |
 
 ### Drush and Drupal Console
 
-[Drush](https://www.drush.org/) is installed and available for your Framework site at `~/MY_PROJECT/vendor/drush/drush/drush`.
+[Drush](https://www.drush.org/) is installed and available for your Framework site at `~/illinois_framework/vendor/drush/drush/drush`.
 
-[Drupal Console](https://drupalconsole.com/docs/en/about/what-is-the-drupal-console) is installed and available for your Framework site at `~/MY_PROJECT/vendor/bin/drupal`.
+[Drupal Console](https://drupalconsole.com/docs/en/about/what-is-the-drupal-console) is installed and available for your Framework site at `~/illinois_framework/vendor/bin/drupal`.
 
 You can add the below alias commands to your `~/.bashrc` to keep from having to type the whole path each time:
 
