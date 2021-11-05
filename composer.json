@@ -113,10 +113,12 @@
         ]
     },
     "scripts": {
-        "post-install-cmd": [
-            "DrupalProject\\composer\\ScriptHandler::createSymlinks"
+        "post-create-project-cmd": [
+            "@create-symlinks",
+            "@create-db",
+            "@install-site"
         ],
-        "post-update-cmd": [
+        "create-symlinks": [
             "DrupalProject\\composer\\ScriptHandler::createSymlinks"
         ],
         "create-db": [
