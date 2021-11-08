@@ -24,6 +24,9 @@ composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://
 
 * The files for your site are stored in the ~/illinois_framework directory
 * Files uploaded to the site are stored in ~/illinois_framework/docroot/sites/default/files
+* The MySQL database username and password is stored in ~/.my.cnf
+* If you lose/forget your admin password, you can reset it with drush using the command `drush upwd admin "NEWPASSWORD"`
+* You can set up Shibboleth authentication to your Illinois Framework site using the instructions below
 
 ## Updating your site
 
@@ -97,8 +100,8 @@ If you would like to extend the Illinois Framework with additional [modules](htt
 You can add the below alias commands to your `~/.bashrc` to keep from having to type the whole path each time:
 
 ```bash
-alias drush='/home/illinoisdrupal/my-fw-project/vendor/drush/drush/drush'
-alias drupal='/home/illinoisdrupal/my-fw-project/vendor/bin/drupal'
+alias drush='$HOME/illinois_framework/vendor/drush/drush/drush'
+alias drupal='$HOME/illinois_framework/vendor/bin/drupal'
 ```
 
 ## Source Control
