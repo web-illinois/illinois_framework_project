@@ -11,7 +11,7 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 ## Creating a cPanel site in web.illinois.edu
 
 * From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
-* Run the below command from your home (~) folder:
+* Run the below command from your home (~) directory:
 
 ```
 composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev illinois_framework
@@ -22,12 +22,12 @@ composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://
 
 ## Extra information:
 
-* The files for your site are stored in the ~/illinois_framework folder
+* The files for your site are stored in the ~/illinois_framework directory
 * Files uploaded to the site are stored in ~/illinois_framework/docroot/sites/default/files
 
 ## Updating your site
 
-Security updates are regularly relased for Drupal and its modules, so it's vital to keep your site updated. To update your site, open the terminal for your site, `cd` to the folder `~/illinois_framework`, and run the following commands:
+Security updates are regularly relased for Drupal and its modules, so it's vital to keep your site updated. To update your site, open the terminal for your site, `cd` to the directory `~/illinois_framework`, and run the following commands:
 
 ```bash
 composer update --with-all-dependencies --no-dev -o
@@ -37,7 +37,7 @@ drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 ## Setting up Shibboleth authentication within your Illinois Framework Drupal site
 
 * Open up a cPanel Terminal session or SSH into your site
-* In your project folder `~/my-fw-project`, run the command
+* In your project directory `~/illinois_framework`, run the command
 ```bash
 composer config repositories.simplesamlphp '{"type": "path", "url": "/var/simplesamlphp-1.18"}'
 ```
