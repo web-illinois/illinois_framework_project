@@ -10,15 +10,17 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 
 ## Creating a cPanel site in web.illinois.edu
 
-* From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
-* Run the below command from your home (~) directory:
+1. From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
+1. Run the below command from your home (~) directory
+1. Access the site at _\<your domain prefix\>_.web.illinois.edu
 
 ```
 composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev illinois_framework
 ```
 
-* Congrats! You should now have a Illinois Framework Drupal site!
-* _Be sure to take note of the admin password displayed at the end of the script_
+Congrats! You should now have a Illinois Framework Drupal site!
+
+_Be sure to take note of the admin password displayed at the end of the script_
 
 ## Extra information:
 
