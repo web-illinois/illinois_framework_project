@@ -38,48 +38,7 @@ drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 ```
 
 ## Setting up Shibboleth authentication within your Illinois Framework Drupal site
-
-* Open up a cPanel Terminal session or SSH into your site
-* In your project directory `~/illinois_framework`, run the command
-```bash
-composer config repositories.simplesamlphp '{"type": "path", "url": "/var/simplesamlphp-1.18"}'
-```
-* SimpleSAMLPHP is already set up and configured in cPanel on web.illinois.edu. The above command tells composer where to find it.
-* Next, run the below command to fetch the Drupal module [simpleSAMLphp Authentication](https://www.drupal.org/project/simplesamlphp_auth)
-```bash
-composer require drupal/simplesamlphp_auth:^3.2 -W
-```
-* Log into your framework site as an administrator
-* From the admin toolbar, click on "Extend"
-* Search for "Simplesaml" in the list of modules
-* Click the box next to "SimpleSAMLphp Authentication"
-* Click the "Install" button at the bottom of the page
-
-![simplesaml-install](https://user-images.githubusercontent.com/56594946/132043539-74833b8b-9d2f-499c-8b35-c09e674db21c.PNG)
-
-* After installing the module, go to the configuration page by going to Configuration->People->SimpleSAMLphp Auth Settings
-* Click on the "User info and synching" tab
-* Set the first two fields to "uid" ("SimpleSAMLphp attribute to be used as unique identifier for the user" and "SimpleSAMLphp attribute to be used as username for the user"
-* Check "Automatically enable SAML authentication for existing users upon successful login" on the same page and click "Save Configuration"
-
-![simplesaml-config1](https://user-images.githubusercontent.com/56594946/132044290-3bb9e81d-82cf-41cf-91f5-1770351705e4.PNG)
-
-* Click on the "Local Authentication" tab
-* Uncheck "Allow SAML users to set Drupal passwords" and click "Save Configuration"
-
-![simplesaml-config2](https://user-images.githubusercontent.com/56594946/132044492-07bb5f09-e8f3-4d91-ac77-a241e20855ff.PNG)
-
-* Click on the "Basic Settings" tab
-* Check "Activate authentication via SimpleSAMLphp"
-* Change "Federated Log In Link Display Name" to "University of Illinois Login" and click "Save Configuration"
-
-![simplesaml-config3](https://user-images.githubusercontent.com/56594946/132044734-e8b5158a-d168-485f-afb7-d25cce2bbe4e.PNG)
-
-You should now be able to authenticate using the UIUC Shibboleth login system! If you go to /user/login for your site, you should see a "University of Illinois Login" button. Clicking on that will take you to the Shibboleth login page.
-
-![simplesaml-config4](https://user-images.githubusercontent.com/56594946/132045163-aa51f1b3-4bbb-4439-b778-98ac133e39ff.PNG)
-
-With the above configuration, any valid user with a NetID will be able to log into your site and automatically create an account. That user will not have any additional permissions. To give that user additional permissions, you will need to find them on the People admin page and assign them a role like administrator or editor.
+Instructions for adding Shibboleth are [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site).
 
 ## Extending the Illinois Framework
 
