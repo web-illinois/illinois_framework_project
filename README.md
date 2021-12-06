@@ -30,6 +30,9 @@ Congrats! You should now have a Illinois Framework Drupal site!
 * The MySQL database username and password is stored in ~/.my.cnf
 * If you lose/forget your Drupal admin password, you can reset it with drush using the command `drush upwd admin "NEWPASSWORD"`
 
+## Shibboleth authentication
+Instructions for adding Shibboleth to your Illinois Framework site is [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site).
+
 ## Updating your site
 
 Security updates are regularly relased for Drupal and its modules, so it's vital to keep your site updated. To update your site, open the terminal for your site, `cd` to the directory `~/illinois_framework`, and run the following commands:
@@ -39,20 +42,17 @@ composer update --with-all-dependencies --no-dev -o
 drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 ```
 
-The above commands assume you have `drush` alias set up already. See below for adding the alias to your site.
+The above commands assume you have a `drush` alias set up already. See below for adding the alias to your site.
 
-## Shibboleth authentication
-Instructions for adding Shibboleth to your Illinois Framework site is [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site).
+## Backing up your site
 
-## Extending the Illinois Framework
+It's important to periodically back up your site. The most important part of a Drupal site is the database. The below commands will create a `~/backups` folder and create a database backup of your site. It will also create a backup of your composer.json and composer.lock, which can be useful in restoring a site's code back to a previous state. Replace the *YOUR_DB_NAME* with the name of your database.
 
-If you would like to extend the Illinois Framework with additional [modules](https://www.drupal.org/project/project_module) or [themes](https://www.drupal.org/project/project_theme), you need to use composer to add them to your site.  
-
-| Task                                            | Composer                                          |
-|-------------------------------------------------|---------------------------------------------------|
-| Installing a contrib project (latest version)   | ```composer require drupal/PROJECT```             |
-| Installing a contrib project (specific version) | ```composer require drupal/PROJECT:1.0.0-beta3``` |
-| Updating a single contrib project               | ```composer update drupal/PROJECT```              |
+```bash
+mkdir -p ~/backups
+mysqldump YOUR_DB_NAME | gzip > ~/backups/db.$(date +%F.%H%M%S).sql.gz
+tar cvf - ~/my-fw-project/composer* | gzip > ~/backups/composer.$(date +%F.%H%M%S).tar.gz
+```
 
 ## Drush and Drupal Console
 
@@ -67,6 +67,16 @@ alias drush='$HOME/illinois_framework/vendor/drush/drush/drush'
 alias drupal='$HOME/illinois_framework/vendor/bin/drupal'
 ```
 
+## Extending the Illinois Framework
+
+If you would like to extend the Illinois Framework with additional [modules](https://www.drupal.org/project/project_module) or [themes](https://www.drupal.org/project/project_theme), you need to use composer to add them to your site.  
+
+| Task                                            | Composer                                          |
+|-------------------------------------------------|---------------------------------------------------|
+| Installing a contrib project (latest version)   | ```composer require drupal/PROJECT```             |
+| Installing a contrib project (specific version) | ```composer require drupal/PROJECT:1.0.0-beta3``` |
+| Updating a single contrib project               | ```composer update drupal/PROJECT```              |
+
 ## Source Control
 You should commit the files in the `~/illinois_framework` directory to source control. You can run `git init` in the `~/illnois_framework` directory to initialize the directory as a git repository. After that, you'll want to commit the files and push them to a remote repository.
 
@@ -76,3 +86,6 @@ When you set up the project, Composer will create a file called ```composer.lock
 
 ## How do I update Drupal core?
 It's counterintuitive, but **don't add `drupal/core` to your project's composer.json!** The Illinois Framework manages Drupal core for you, so adding a direct dependency on Drupal core is likely to cause problems for you in the future.
+
+## Developing the Illinois Drupal Framework
+Instructions on setting up a local Docker-based development environment are located at [https://github.com/web-illinois/illinois_framework_localdev](https://github.com/web-illinois/illinois_framework_localdev).
