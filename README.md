@@ -14,7 +14,7 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 2. Run the `composer` command below from your home (~) directory. _Be sure to take note of the admin password displayed at the end of the script._
 
 ```
-composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev illinois_framework
+composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:^1.0 illinois_framework
 ```
 
 3. Access the site at _\<your domain prefix\>_.web.illinois.edu
