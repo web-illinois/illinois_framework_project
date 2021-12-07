@@ -51,7 +51,7 @@ It's important to periodically back up your site. The most important part of a D
 ```bash
 mkdir -p ~/backups
 mysqldump YOUR_DB_NAME | gzip > ~/backups/db.$(date +%F.%H%M%S).sql.gz
-tar cvf - ~/my-fw-project/composer* | gzip > ~/backups/composer.$(date +%F.%H%M%S).tar.gz
+tar cvf - ~/illinois_framework/composer* | gzip > ~/backups/composer.$(date +%F.%H%M%S).tar.gz
 ```
 
 ## Drush and Drupal Console
