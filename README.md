@@ -6,7 +6,10 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 
 * A fresh cPanel account on https://web.illinois.edu
 * Github [personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) that is [enabled for SSO](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)
-  * Save your token somewhere safe. You will need it to run the composer command that installs your site below.
+  * Save the token string somewhere safe.  You will need it for each new site you install.
+  * You will be prompted for it after you run the composer command below that installs your site.  Paste it into the terminal window and hit enter.  You will not see it when pasting.
+  * Creating individual keys for each install is advisable but will require more maintenance and record keeping.  If you will be sharing your cPanel account with others you should create a new key.
+  * The key you enter will be stored and reused when you run the update script.
 
 ## Creating a cPanel site in web.illinois.edu
 
