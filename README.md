@@ -14,7 +14,7 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 ## Creating a cPanel site in web.illinois.edu
 
 1. From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
-2. Run the `composer` command below from your home (~) directory. _Be sure to take note of the admin password displayed at the end of the script._
+2. Run the `composer` command below from your home (~) directory.  The script will pause when you are prompted for your GitHub token.  _Be sure to take note of the admin password displayed at the end of the script._  Expect this install to take about 10 minutes.
 
 ```
 composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://github.com/web-illinois/illinois_framework_project.git\", \"type\": \"vcs\"}" web-illinois/illinois_framework_project:1.x-dev illinois_framework
