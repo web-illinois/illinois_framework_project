@@ -26,6 +26,14 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "docroot/"
+            },
+            "file-mapping": {
+                "[web-root]/sites/default.services.yml": {
+                    "overwrite": false
+                },
+                "[web-root]/sites/default.settings.php": {
+                    "overwrite": false
+                }
             }
         },
         "enable-patching": true,
@@ -111,9 +119,11 @@
     },
     "scripts": {
         "post-create-project-cmd": [
+            "@start-ssl",
             "@create-symlinks",
             "@create-db",
-            "@install-site"
+            "@install-site",
+            "@enable-https-redirect"
         ],
         "create-symlinks": [
             "DrupalProject\\composer\\ScriptHandler::createSymlinks"
@@ -124,6 +134,12 @@
         ],
         "install-site": [
             "DrupalProject\\composer\\ScriptHandler::installSite"
+        ],
+        "start-ssl": [
+            "DrupalProject\\composer\\ScriptHandler::startAutoSSL"
+        ],
+        "enable-https-redirect": [
+            "DrupalProject\\composer\\ScriptHandler::enableSSLRedirect"
         ]
     }
 }

@@ -105,19 +105,9 @@ class ScriptHandler {
             }
         }
     }
-    
-    // Symlink vendor directory to project root
-    /*
-    try {
-        symlink($projectRoot . '/vendor', $homeDir . '/vendor');
-        echo "Create symlink ~/vendor" . "\n";
-    } 
-    catch (\Throwable $t) {
-        echo 'Symlink already exists for ~/vendor' . "\n";
-    }
-    */
+
   }
-  
+
   public static function createMySQLuser(Event $event) {
     $paths = self::getPaths();
     $dbPass = '';
@@ -167,6 +157,36 @@ class ScriptHandler {
     }
     else {
         echo "Set DB permissions for the DB user\n";
+    }
+
+  }
+
+  // Start the cPanel process for getting an HTTPS cert for the site
+  public static function startAutoSSL(Event $event) {
+    // API Info: https://api.docs.cpanel.net/openapi/cpanel/operation/start_autossl_check/
+    $apiResult = json_decode(shell_exec('uapi --output=json SSL start_autossl_check'));
+    $autoSSLStarted = $apiResult->result->status;
+
+    if( $autoSSLStarted ) {
+        echo "AutoSSL Started\n";
+    }
+    else {
+        echo "AutoSSL didn't start\n";
+    }
+
+  }
+
+  // Force HTTP to HTTPS redirect
+  public static function enableSSLRedirect(Event $event) {
+    // API Info: https://api.docs.cpanel.net/openapi/cpanel/operation/toggle_ssl_redirect_for_domains/
+    $apiResult = json_decode(shell_exec('uapi --output=json SSL toggle_ssl_redirect_for_domains domains=\'' . self::getCpanelUser() . '.web.illinois.edu\' state=\'1\''));
+    $redirectEnabled = $apiResult->result->status;
+
+    if( $redirectEnabled ) {
+        echo "HTTPS redirect enabled\n";
+    }
+    else {
+        echo "HTTPS redirect NOT enabled\n";
     }
 
   }
