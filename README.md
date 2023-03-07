@@ -47,15 +47,11 @@ drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 
 The above commands assume you have a `drush` alias set up already. See below for adding the alias to your site.
 
-### Upgrading to version 2 of the framework
+### Upgrading to version 3.0 of the framework
 
-Version 2 of the framework was released 1/12/2022. To upgrade your site from version 1.x to version 2, follow the steps below:
+Version 3 of the framework was released 3/7/2023. Instructions on how to upgrade your site can be found [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Upgrading-your-site-to-version-3.0-from-2.4).
 
-- Make a backup of your site (see below)
-- Make the directory `~/illinois_framework/docroot/sites/default` writable by running `chmod 755 ~/illinois_framework/docroot/sites/default`
-- Run the `composer update...` and `drush updb...` commands above to update your site
-- If you are using Shibboleth to log into your site, [follow the instructions in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site#login-loop-error---updated-11222) to fix a possible login loop error
-- Finally, update your site to version 2 by running `composer require web-illinois/illinois_framework_profile:^2.0 -W` from your `~/illinois_framework` directory
+
 
 ## Backing up your site
 
