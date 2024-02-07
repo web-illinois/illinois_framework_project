@@ -74,7 +74,8 @@ class ScriptHandler {
     $paths = self::getPaths();
     $dbInfo = self::getDbInfo();
     
-    $install_status = shell_exec($paths['projectRoot'] . 'vendor/drush/drush/drush status bootstrap --pipe --format=list');
+    $install_status = shell_exec($paths['projectRoot'] . 'vendor/drush/drush/drush status --field=\'Drupal bootstrap\' --format=string');
+    $install_status = trim($install_status);
     if( $install_status != 'Successful' ) {
         if( !empty($dbInfo) ) {
             $drushCommand = "site:install --yes --site-name=IllinoisFramework --db-url=\"mysql://" . $dbInfo['dbUser'] . ":" . $dbInfo['dbPass'] . "@localhost/" . self::getDbName(). "\"";
