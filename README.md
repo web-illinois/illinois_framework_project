@@ -25,6 +25,14 @@ composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://
 
 Congrats! You should now have a Illinois Framework Drupal site!
 
+## After installation
+
+After your ILFW site is installed, it is recommended that you perform these extra steps:
+
+* In the "Update Manager Settings" (`/admin/reports/updates/settings`) set the e-mail address to a mailbox you monitor.
+* Change the admin password to something more secure and store it in a password manager
+* Go through the site setup at https://drupal.webtheme.illinois.edu/site-setup
+
 ## Extra information:
 
 * Be sure to add the `drush` alias to your .bashrc file using the [instructions below](#drush-and-drupal-console)
