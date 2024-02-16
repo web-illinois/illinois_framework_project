@@ -78,7 +78,7 @@ class ScriptHandler {
     $install_status = trim($install_status);
     if( $install_status != 'Successful' ) {
         if( !empty($dbInfo) ) {
-            $drushCommand = "site:install --yes --site-name=IllinoisFramework --db-url=\"mysql://" . $dbInfo['dbUser'] . ":" . $dbInfo['dbPass'] . "@localhost/" . self::getDbName(). "\"";
+            $drushCommand = "site:install --yes --site-name=IllinoisFramework --site-mail=no-reply@illinois.edu --account-mail=no-reply@illinois.edu --db-url=\"mysql://" . $dbInfo['dbUser'] . ":" . $dbInfo['dbPass'] . "@localhost/" . self::getDbName(). "\"";
             shell_exec($paths['projectRoot'] . 'vendor/drush/drush/drush ' . $drushCommand);
         }
         else {
