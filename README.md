@@ -1,6 +1,6 @@
 # Illinois Framework Project
 
-This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois Framework Drupal distribution](https://github.com/web-illinois/illinois_framework_profile). It is intended to be used on the UIUC cPanel instance at https://web.illinois.edu. For information about what content types and modules are included, please check out the [Illinois Framework Drupal distribution repository](https://github.com/web-illinois/illinois_framework_profile). This distribution is maintained by the [Illinois WIGG-Drupal group](https://webtheme.illinois.edu/about/drupal/). An example site that showcases the features of this distribution can be found at [https://drupal.webtheme.illinois.edu/](https://drupal.webtheme.illinois.edu/).
+This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois Drupal Framework distribution](https://github.com/web-illinois/illinois_framework_profile). It is intended to be used on the University of Illinois cPanel instance at https://web.illinois.edu. For information about what content types and modules are included, please check out the [Illinois Drupal Framework distribution repository](https://github.com/web-illinois/illinois_framework_profile). This distribution is maintained by the [Illinois WIGG-Drupal group](https://webtheme.illinois.edu/about/drupal/). An example site that showcases the features of this distribution can be found at [https://drupal.webtheme.illinois.edu/](https://drupal.webtheme.illinois.edu/).
 
 ## Prerequisites
 
@@ -23,7 +23,7 @@ composer create-project --remove-vcs --no-dev --repository="{\"url\": \"https://
 3. Access the site at _\<your domain prefix\>_.web.illinois.edu
 4. Login to your site at _\<your domain prefix\>_.web.illinois.edu/user/login
 
-Congrats! You should now have a Illinois Framework Drupal site!
+Congrats! You should now have a Illinois Drupal Framework site!
 
 ## After installation
 
@@ -42,7 +42,7 @@ After your ILFW site is installed, it is recommended that you perform these extr
 * If you lose/forget your Drupal admin password, you can reset it with drush using the command `drush upwd admin "NEWPASSWORD"`
 
 ## Shibboleth authentication
-Instructions for adding Shibboleth to your Illinois Framework site is [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site).
+Instructions for adding Shibboleth to your Illinois Drupal Framework site is [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Setting-up-Shibboleth-authentication-within-your-Illinois-Framework-Drupal-site).
 
 ## Updating your site
 
@@ -73,22 +73,19 @@ mysqldump YOUR_DB_NAME | gzip > ~/backups/db.$(date +%F.%H%M%S).sql.gz
 tar cvf - ~/illinois_framework/composer* | gzip > ~/backups/composer.$(date +%F.%H%M%S).tar.gz
 ```
 
-## Drush and Drupal Console
+## Drush
 
-[Drush](https://www.drush.org/) is installed and available for your Framework site at `~/illinois_framework/vendor/drush/drush/drush`.
+[Drush](https://www.drush.org/) is installed and available for your Framework site at `~/illinois_framework/vendor/bin/drush`.
 
-[Drupal Console](https://drupalconsole.com/docs/en/about/what-is-the-drupal-console) is installed and available for your Framework site at `~/illinois_framework/vendor/bin/drupal`.
-
-You can add the below alias commands to your `~/.bashrc` to keep from having to type the whole path each time:
+You can add the below alias command to your `~/.bashrc` to keep from having to type the whole path each time:
 
 ```bash
-alias drush='$HOME/illinois_framework/vendor/drush/drush/drush'
-alias drupal='$HOME/illinois_framework/vendor/bin/drupal'
+alias drush='$HOME/illinois_framework/vendor/bin/drush'
 ```
 
-## Extending the Illinois Framework
+## Extending the Illinois Drupal Framework
 
-If you would like to extend the Illinois Framework with additional [modules](https://www.drupal.org/project/project_module) or [themes](https://www.drupal.org/project/project_theme), you need to use composer to add them to your site.  
+If you would like to extend the Illinois Drupal Framework with additional [modules](https://www.drupal.org/project/project_module) or [themes](https://www.drupal.org/project/project_theme), you need to use composer to add them to your site.  
 
 | Task                                            | Composer                                          |
 |-------------------------------------------------|---------------------------------------------------|
@@ -104,7 +101,7 @@ If you peek at the ```.gitignore```, you'll see that certain directories, includ
 When you set up the project, Composer will create a file called ```composer.lock```, which is a list of which dependencies were installed, and in which versions. **Commit ```composer.lock``` to source control!** Then, when your colleagues want to spin up their own copies of the project, all they'll have to do is run ```composer install```, which will install the correct versions of everything in ```composer.lock```.
 
 ## How do I update Drupal core?
-It's counterintuitive, but **don't add `drupal/core` to your project's composer.json!** The Illinois Framework manages Drupal core for you, so adding a direct dependency on Drupal core is likely to cause problems for you in the future.
+It's counterintuitive, but **don't add `drupal/core` to your project's composer.json!** The Illinois Drupal Framework manages Drupal core for you, so adding a direct dependency on Drupal core is likely to cause problems for you in the future.
 
 ## Developing the Illinois Drupal Framework
 Instructions on setting up a local Docker-based development environment are located at [https://github.com/web-illinois/illinois_framework_localdev](https://github.com/web-illinois/illinois_framework_localdev).
