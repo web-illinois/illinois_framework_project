@@ -5,13 +5,38 @@ This is a [Composer](https://getcomposer.org/)-based installer for the [Illinois
 ## Prerequisites
 
 * A fresh cPanel account on https://web.illinois.edu
+* [Composer](https://getcomposer.org/) installed in your cPanel environment ([instructions below](#installing-composer-in-your-cpanel-environment))
 * Github [personal access token](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) that is [enabled for SSO](https://docs.github.com/en/github/authenticating-to-github/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)
   * Save the token string somewhere safe.  You will need it for each new site you install.
   * You will be prompted for it after you run the composer command below that installs your site.  Paste it into the terminal window and hit enter.  You will not see it when pasting.
   * Creating individual keys for each install is advisable but will require more maintenance and record keeping.  If you will be sharing your cPanel account with others you should create a new key.
   * The key you enter will be stored and reused when you run the update script.
 
-## Creating a cPanel site in web.illinois.edu
+## Installing Composer in your cPanel environment
+Starting in September 2025, `composer` is no longer included by default with cPanel. Installation and updates of Drupal sites should be performed using the [Composer dependency manager](https://getcomposer.org). Composer is a tool for dependency management in PHP.
+
+To install composer in your cPanel environment, run the script below from your home directory:
+
+```sh
+#!/bin/bash
+
+# Download the installer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+
+# Ensure the destination directory exists
+mkdir -p ${HOME}/bin
+
+# Run the installer
+php composer-setup.php --install-dir=${HOME}/bin --filename=composer
+
+# Remove the installer
+php -r "unlink('composer-setup.php');"
+
+echo "✅ Composer installed successfully! Reload your shell environment to start using composer."
+```
+After running the script, reload your shell environment and verify composer is installed by running `composer --version`. You should occasionally update your version of composer by running `composer self-update`.
+
+## Creating a Illinois Drupal Framework site in web.illinois.edu
 
 1. From the cPanel dashboard, open up Terminal (or SSH into your site if you prefer)
 2. Run the `composer` command below from your home (~) directory.  The script will pause when you are prompted for your GitHub token.  _Be sure to take note of the admin password displayed at the end of the script._  Expect this install to take about 10 minutes.
@@ -27,7 +52,7 @@ Congrats! You should now have a Illinois Drupal Framework site!
 
 ## After installation
 
-After your ILFW site is installed, it is recommended that you perform these extra steps:
+After your site is installed, it is recommended that you perform these extra steps:
 
 * In the "Update Manager Settings" (`/admin/reports/updates/settings`) set the e-mail address to a mailbox you monitor.
 * Change the admin password to something more secure and store it in a password manager
