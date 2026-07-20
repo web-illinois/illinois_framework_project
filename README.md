@@ -80,7 +80,7 @@ drush updb -y; drush cr; drush ccr; drush config-distro-update -y
 
 The above commands assume you have a `drush` alias set up already. See below for adding the alias to your site.
 
-### Upgrading to version 5.0 of the framework (Released April 2025)
+### Upgrading to version 5.0 of the framework (Released April 2026)
 
 Version 5 of the framework was released 4/13/26. Instructions on how to upgrade your site can be found [in the wiki](https://github.com/web-illinois/illinois_framework_project/wiki/Upgrading-your-site-to-version-5.0-from-4.4).
 
