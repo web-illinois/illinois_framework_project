@@ -8,14 +8,11 @@
         "more info": "https://webtheme.illinois.edu/about/drupal/"
     },
     "require": {
-        "web-illinois/illinois_framework_profile": "^5.0",
-        "cweagans/composer-patches": "^1.7",
+        "web-illinois/illinois_framework_profile": "^6.0",
+        "cweagans/composer-patches": "^2.0",
         "drupal/core-composer-scaffold": "*",
         "drupal/core-project-message": "*",
-        "oomphinc/composer-installers-extender": "^2.0"
-    },
-    "require-dev": {
-        "drupal/devel": "^5.0"
+        "mnsami/composer-custom-directory-installer": "^2.1"
     },
     "conflict": {
         "drupal/drupal": "*"
