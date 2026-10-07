@@ -22,18 +22,6 @@
         "drupal-scaffold": {
             "locations": {
                 "web-root": "docroot/"
-            },
-            "file-mapping": {
-                "[web-root]/sites/default.services.yml": {
-                    "mode": "replace",
-                    "path": "docroot/core/assets/scaffold/files/default.services.yml",
-                    "overwrite": false
-                },
-                "[web-root]/sites/default.settings.php": {
-                    "mode": "replace",
-                    "path": "docroot/core/assets/scaffold/files/default.settings.php",
-                    "overwrite": false
-                }
             }
         },
         "enable-patching": true,
